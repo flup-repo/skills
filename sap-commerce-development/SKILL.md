@@ -186,7 +186,7 @@ See [reference/testing.md](reference/testing.md) for full testing reference.
 ## Build & Test
 
 ```bash
-cd /path/to/project && . ./setenv.sh      # Setup environment
+cd /path/to/project/hybris/bin/platform && . ./setantenv.sh      # Setup ant environment
 # From hybris/bin/platform:
 ant build                                  # Quick compile
 ant clean all                              # After items.xml changes
