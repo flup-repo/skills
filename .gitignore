@@ -1,2 +1,15 @@
-# macOS
+# OS
 .DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+*~
+
+# Temp
+*.bak
+*.tmp

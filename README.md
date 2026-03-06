@@ -8,7 +8,7 @@ A curated collection of **[Agent Skills](https://github.com/agent-skills)** — 
 
 | Skill | Description | Version | License |
 |-------|-------------|---------|---------|
-| [SAP Commerce Cloud Development](skills/sap-commerce-development/) | Guides SAP Commerce Cloud backend development: type system, ImpEx, Spring, OCC REST API, extensions, builds, and testing | 2.0 | Apache-2.0 |
+| [SAP Commerce Cloud Development](sap-commerce-development/) | Guides SAP Commerce Cloud backend development: type system, ImpEx, Spring, OCC REST API, extensions, builds, and testing | 2.0 | Apache-2.0 |
 
 > **More skills coming soon.** This collection is actively growing — check back for new additions or [contribute your own](#contributing).
 
@@ -16,7 +16,7 @@ A curated collection of **[Agent Skills](https://github.com/agent-skills)** — 
 
 ## 📦 SAP Commerce Cloud Development
 
-The first skill in this collection. It teaches AI agents how to work with SAP Commerce Cloud (Hybris) backend codebases.
+Currently the first and only skill in this collection. It teaches AI agents how to work with SAP Commerce Cloud (Hybris) backend codebases.
 
 ### Highlights
 
@@ -41,56 +41,65 @@ The first skill in this collection. It teaches AI agents how to work with SAP Co
 
 ### Reference Docs
 
-- **[Type System](skills/sap-commerce-development/reference/type-system.md)** — items.xml: types, enums, relations, deployment
-- **[Patches & ImpEx](skills/sap-commerce-development/reference/patches.md)** — Patches framework, ImpEx syntax, macros, lifecycle
-- **[Spring Configuration](skills/sap-commerce-development/reference/spring-config.md)** — Beans, aliases, overrides, list/map merge
-- **[OCC REST API](skills/sap-commerce-development/reference/occ-api.md)** — Controllers, WsDTOs, beans.xml, DataMapper
-- **[Testing](skills/sap-commerce-development/reference/testing.md)** — Unit tests, Mockito, AAA pattern
+- **[Type System](sap-commerce-development/reference/type-system.md)** — items.xml: types, enums, relations, deployment
+- **[Patches & ImpEx](sap-commerce-development/reference/patches.md)** — Patches framework, ImpEx syntax, macros, lifecycle
+- **[Spring Configuration](sap-commerce-development/reference/spring-config.md)** — Beans, aliases, overrides, list/map merge
+- **[OCC REST API](sap-commerce-development/reference/occ-api.md)** — Controllers, WsDTOs, beans.xml, DataMapper
+- **[Testing](sap-commerce-development/reference/testing.md)** — Unit tests, Mockito, AAA pattern
 
 ### Agent Compatibility
 
-| Agent Platform | Config File | Status |
-|---------------|-------------|--------|
-| Gemini (via `.agents/skills/`) | [`SKILL.md`](skills/sap-commerce-development/SKILL.md) | ✅ Supported |
-| OpenAI | [`agents/openai.yaml`](skills/sap-commerce-development/agents/openai.yaml) | ✅ Supported |
+This skill is compatible with any agent that supports filesystem-based skills or prompt packs, as long as the folder is installed in the path that agent expects and `SKILL.md` remains the entrypoint.
+
+| Agent / Scope | Expected Path | Notes |
+|---------------|---------------|-------|
+| Claude Code (personal/global) | `~/.claude/skills/sap-commerce-development/SKILL.md` | Standard personal skill location |
+| Claude Code (project-local) | `.claude/skills/sap-commerce-development/SKILL.md` | Shared with a specific repository |
+| OpenAI-compatible setups | [`sap-commerce-development/agents/openai.yaml`](sap-commerce-development/agents/openai.yaml) | Optional adapter config for platforms that use OpenAI agent manifests |
+| Other agents | Agent-specific skill directory | Install this skill folder wherever that agent loads custom skills |
 
 ---
 
 ## Repository Structure
 
 ```
-skills/
+.
+├── .gitignore                             # Repository-level ignores
 ├── README.md                              # This file
-└── skills/
-    └── sap-commerce-development/          # First skill
-        ├── SKILL.md                       # Main skill definition
-        ├── LICENSE.txt                    # Apache 2.0 license
-        ├── .gitignore
-        ├── agents/
-        │   └── openai.yaml               # OpenAI agent config
-        └── reference/
-            ├── type-system.md
-            ├── patches.md
-            ├── spring-config.md
-            ├── occ-api.md
-            └── testing.md
+└── sap-commerce-development/              # Skill package
+    ├── SKILL.md                           # Main skill definition
+    ├── LICENSE.txt                        # Apache 2.0 license
+    ├── agents/
+    │   └── openai.yaml                    # OpenAI agent config
+    └── reference/
+        ├── type-system.md
+        ├── patches.md
+        ├── spring-config.md
+        ├── occ-api.md
+        └── testing.md
 ```
 
 ## Installation
 
-Each skill can be installed individually. Copy or symlink any skill folder into your project's `.agents/skills/` directory:
+Each skill can be installed individually. Copy or symlink the skill folder into the directory your agent uses for custom skills.
 
 ```bash
-# From your target project
-mkdir -p .agents/skills
-cp -r /path/to/this-repo/skills/sap-commerce-development .agents/skills/
+# Claude Code (personal/global)
+mkdir -p ~/.claude/skills
+cp -r /path/to/this-repo/sap-commerce-development ~/.claude/skills/
+```
+
+```bash
+# Claude Code (project-local)
+mkdir -p .claude/skills
+cp -r /path/to/this-repo/sap-commerce-development .claude/skills/
 ```
 
 Or add the entire collection as a Git submodule:
 
 ```bash
 git submodule add <repo-url> agent-skills
-ln -s agent-skills/skills/sap-commerce-development .agents/skills/sap-commerce-development
+ln -s agent-skills/sap-commerce-development .claude/skills/sap-commerce-development
 ```
 
 ## Contributing
@@ -106,7 +115,7 @@ Contributions are welcome — whether improving existing skills or adding entire
 
 ### Adding a New Skill
 
-1. Create a new folder under `skills/` with a descriptive name
+1. Create a new folder under the root directory with a descriptive name
 2. Add a `SKILL.md` with YAML frontmatter (`name`, `description`, `license`) and instructions
 3. Add a `LICENSE.txt` for the skill
 4. Optionally add agent-specific configs in an `agents/` subdirectory
