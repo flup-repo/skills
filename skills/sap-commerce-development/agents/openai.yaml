@@ -1,0 +1,7 @@
+interface:
+  display_name: "SAP Commerce Cloud Development"
+  short_description: "Guides SAP Commerce Cloud backend development: type system, ImpEx, Spring, OCC REST API, extensions, builds, and testing."
+  default_prompt: "Follow SAP Commerce Cloud backend conventions from this skill. Keep all custom code in extensions under `core-customize/hybris/bin/custom/` and config in `core-customize/hybris/config/`; never modify SAP core under `hybris/bin/platform/` or `hybris/bin/modules/`. Implement changes through the standard layers (`*-items.xml` -> core services/DAOs -> facades/populators -> OCC controllers/WsDTOs), use the OOTB patches framework for data and ImpEx changes, override Spring beans via aliases, expose only WsDTOs through OCC with `DataMapper`, and run the correct Ant lifecycle (`ant clean all` after `items.xml`, `ant updatesystem` for type/data changes, `ant build` before tests, then unit/integration tests for the touched extension)."
+
+policy:
+  allow_implicit_invocation: true
