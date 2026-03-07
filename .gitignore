@@ -13,3 +13,6 @@ Thumbs.db
 # Temp
 *.bak
 *.tmp
+
+# Agent local state
+.claude/
