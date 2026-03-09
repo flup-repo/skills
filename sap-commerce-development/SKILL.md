@@ -96,7 +96,7 @@ See [reference/patches.md](reference/patches.md) for full patches and ImpEx refe
 
 ```impex
 $catalog=productCatalog
-$version=catalogversion(catalog(id[default=$catalog]),version[default='Online'])[unique=true,default=$catalog:Online]
+$version=catalogversion(catalog(id[default=$catalog]),version[default='Staged'])[unique=true,default=$catalog:Staged]
 
 INSERT_UPDATE Product;code[unique=true];name[lang=en];$version
 ;PROD001;My Product;
