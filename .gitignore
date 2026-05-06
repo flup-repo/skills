@@ -16,3 +16,6 @@ Thumbs.db
 
 # Agent local state
 .claude/
+
+# Skill secrets — never commit credentials or subscription codes
+sap-cloud-cli/.env
