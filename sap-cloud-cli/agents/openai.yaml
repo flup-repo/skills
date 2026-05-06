@@ -4,7 +4,8 @@ interface:
   default_prompt: >-
     Use the sapccm CLI to manage the SAP Commerce Cloud subscription.
     Load subscription and environment codes from the .env file in the sap-cloud-cli skill directory.
-    The subscription code is SUBSCRIPTION_CODE_REDACTED. Environment codes: d1 (development), s1 (staging), p1 (production).
+    If SUBSCRIPTION_CODE is empty or missing in .env, ask the user for it before running any command, then write it to .env.
+    Environment codes: d1 (development), s1 (staging), p1 (production).
     If authentication fails, prompt the user to run: sapccm config set client-id {VALUE}, sapccm config set client-secret {VALUE}, sapccm config set token-url {VALUE}.
     Always confirm destructive operations (cancel deployment, delete backup) before executing.
     Use --no-wait for long-running operations only when the user explicitly does not want to wait.

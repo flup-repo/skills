@@ -11,18 +11,22 @@ argument-hint: "build list | build create | deployment list | deployment create 
 
 # SAP Commerce Cloud CLI (`sapccm`)
 
+## Installation
+
+On first use, check whether `SUBSCRIPTION_CODE` is set in the `.env` file located in this skill's directory. If it is empty or missing, **ask the user for their subscription code** (visible in the SAP Cloud Portal URL), write it to `.env`, and confirm before continuing:
+
+```
+SUBSCRIPTION_CODE=<value provided by the user>
+```
+
+Do not proceed with any command until the subscription code is populated.
+
 ## Setup
 
 Load environment variables from the `.env` file in this skill's directory before running any command:
 
 ```bash
-# From the skill directory
 source /path/to/sap-cloud-cli/.env
-# or export values directly:
-export SUBSCRIPTION_CODE=SUBSCRIPTION_CODE_REDACTED
-export D1_ENV_CODE=d1
-export S1_ENV_CODE=s1
-export P1_ENV_CODE=p1
 ```
 
 The CLI binary is `sapccm`. It must be available in your `PATH` before running any command — if `sapccm` is not found, add its installation directory to `PATH` and verify with `sapccm --version`.
